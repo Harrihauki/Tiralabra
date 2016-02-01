@@ -38,7 +38,11 @@ public class Dijkstra {
         
         List<Solmu> solmut = initialiseSingleSource(kartta, aloitusX, aloitusY);
         
-        PriorityQueue<Integer> keko = new PriorityQueue();
+        PriorityQueue<Solmu> keko = new PriorityQueue();
+        
+        lisaaSolmutKekoon(keko, solmut);
+        
+        
         
         return 0;
     }
@@ -73,6 +77,19 @@ public class Dijkstra {
         }
         
         return solmut;
+    }
+
+    /**
+     * Metodi lisää solmut kekoon
+     * 
+     * @param keko  Keko, johon solmut lisätään
+     * @param solmut    Lista solmuista
+     */
+    public void lisaaSolmutKekoon(PriorityQueue<Solmu> keko, List<Solmu> solmut) {
+        
+        for (Solmu solmu : solmut) {
+            keko.add(solmu);
+        }
     }
     
     

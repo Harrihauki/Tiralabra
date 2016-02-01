@@ -8,6 +8,7 @@ package Polkualgoritmien_vertailu.algoritmit;
 import Polkualgoritmien_vertailu.algoritmit.Dijkstra;
 import Polkualgoritmien_vertailu.domain.Solmu;
 import java.util.ArrayList;
+import java.util.PriorityQueue;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -77,5 +78,32 @@ public class DijkstraTest {
         ArrayList<Solmu> solmut = dijkstra.initialiseSingleSource(testi, 1, 3);
         
         assertEquals(testi.length * testi[0].length, solmut.size());
+    }
+    
+    @Test
+    public void testaaLisaakoMetodiKaikkiSolmutKekoon() {
+        
+        ArrayList<Solmu> solmut = dijkstra.initialiseSingleSource(testi, 1, 3);
+        
+        PriorityQueue<Solmu> keko = new PriorityQueue();
+        
+        dijkstra.lisaaSolmutKekoon(keko, solmut);
+        
+        assertEquals(testi.length * testi[0].length, keko.size());
+    }
+    
+    @Test
+    public void testaaTulevatkoSolmutKekoonOikeassaJarjestyksessa() {
+        
+        ArrayList<Solmu> solmut = dijkstra.initialiseSingleSource(testi, 1, 3);
+        
+        PriorityQueue<Solmu> keko = new PriorityQueue();
+        
+        dijkstra.lisaaSolmutKekoon(keko, solmut);
+        
+        Solmu solmu = keko.poll();
+        
+        assertEquals(1, solmu.getX());
+        assertEquals(3, solmu.getY());
     }
 }

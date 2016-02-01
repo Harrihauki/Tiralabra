@@ -61,10 +61,25 @@ public class Solmu implements Comparable {
     public int getDistance() {
         return this.distance;
     }
+    
+    /**
+     * Vertaillaan, kumpi reitti lähtöpisteestä tähän pisteeseen on lyhyempi: Nyt
+     * käsiteltävä vai lyhin aiemmin löydetty
+     * 
+     * @param o toinen Solmu-olio
+     * @return 
+     */
 
     @Override
     public int compareTo(Object o) {
         
+        if (o.getClass() == this.getClass()) {
+            
+            Solmu solmu = (Solmu) o;
+            Integer etaisyys = this.distance;
+            return etaisyys.compareTo(solmu.getDistance());
+        }
         
+        return 0;
     }
 }
