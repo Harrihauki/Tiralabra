@@ -10,6 +10,13 @@ package Polkualgoritmien_vertailu.Main;
  * @author lallimyl
  */
 public class Main {
+    
+    static char[][] testi = new char[][]{
+        {'#', '#', '#', '#', '#', '.', '#', '#', '#', '#'},
+        {'#', '.', '#', '#', '#', '.', '.', '.', '.', '#'},
+        {'#', '.', '.', '#', '#', '.', '#', '#', '.', '#'},
+        {'#', '.', '.', '.', '.', '.', '.', '.', '.', '#'},
+        {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#'}};
 
     /**
      * @param args the command line arguments
