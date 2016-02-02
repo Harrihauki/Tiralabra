@@ -8,4 +8,6 @@
 
 1.2. - vol 2. Täydennystä luokkiin ja testeihin. Homma tössähti ikävästi, kun rupesin pähkäilemään, miten järkeviten saan solmuille vierussolmut viriteltyä, enkä päässyt puusta pitkään ajatuksia? - 2h
 
-2.2. - osa 1. Lisää vatvomista muodon kanssa. Jos nyt pikku hiljaa asettuisi Dijkstra, niin pääsisi A*:rin kimppuun. Metodeja lisäilty.
+2.2. - osa 1. Lisää vatvomista muodon kanssa. Jos nyt pikku hiljaa asettuisi Dijkstra, niin pääsisi A*:rin kimppuun. Metodeja lisäilty. - 4h
+
+2.2. - osa 2. Turhia metodeja poistettu tai kommentoitu pois. Parannuksia. Pari bugia poistettu. Testejä poistettu ja lisätty. Dijkstran perustoiminnallisuus alkaa olla kasassa. Ei valmis, mutta periaatteessa selvittää lyhimmän polun ja sen pituuden. Käyttö ja tulostukset toki vielä puuttuvat, mutta nekin ehkä enemmän sitten käyttöliittymän juttuja. Seuraavalla kerralla sitten astarin kimppuun vähitellen! Ellen sitten keksi jotain korjattavaa tästä. - 2h

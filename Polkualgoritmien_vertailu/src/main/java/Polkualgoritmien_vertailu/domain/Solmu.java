@@ -13,10 +13,10 @@ package Polkualgoritmien_vertailu.domain;
  */
 public class Solmu implements Comparable {
     
-    int x;
-    int y;
-    int distance;
-    Solmu path;
+    private int x;
+    private int y;
+    private int distance;
+    private Solmu path;
     
     /**
      *
@@ -60,6 +60,14 @@ public class Solmu implements Comparable {
      */
     public int getDistance() {
         return this.distance;
+    }
+    
+    public void setPath(Solmu solmu) {
+        this.path = solmu;
+    }
+    
+    public Solmu getPath() {
+        return this.path;
     }
     
     /**

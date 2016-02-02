@@ -21,7 +21,7 @@ import static org.junit.Assert.*;
  *
  */
 public class DijkstraTest {
-    
+
     Dijkstra dijkstra;
     char[][] testi;
 
@@ -42,7 +42,7 @@ public class DijkstraTest {
         dijkstra = new Dijkstra();
 
         testi = new char[][]{
-            {'#', '#', '#', '#', '#', '.', '#', '#', '#', '#'},
+            {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#'},
             {'#', '.', '#', '#', '#', '.', '.', '.', '.', '#'},
             {'#', '.', '.', '#', '#', '.', '#', '#', '.', '#'},
             {'#', '.', '.', '.', '.', '.', '.', '.', '.', '#'},
@@ -55,55 +55,72 @@ public class DijkstraTest {
 
     @Test
     public void testaaSingleSourcenAsettamatArvot() {
-        
-        ArrayList<Solmu> solmut = dijkstra.initialiseSingleSource(testi, 1, 3);
-        
-        for (Solmu solmu : solmut) {
-            
-            if (solmu.getX() == 1) {
-                if (solmu.getY() == 3) {
-                    assertFalse(solmu.getDistance() != 0);
+
+        Solmu[][] solmut = dijkstra.initialiseSingleSource(testi, 1, 3);
+
+        for (int i = 0; i < solmut.length; i++) {
+            for (int j = 0; j < solmut[0].length; j++) {
+
+                if (i == 1 && j == 3) {
+                    assertEquals(0, solmut[i][j].getDistance());
                 } else {
-                    assertFalse(solmu.getDistance() != Integer.MAX_VALUE);
+                    assertEquals(null, solmut[i][j]);
                 }
-            } else {
-                assertFalse(solmu.getDistance() != Integer.MAX_VALUE);
             }
         }
     }
-    
+
     @Test
     public void testaaSolmujenMaaraOikeaksi() {
-        
-        ArrayList<Solmu> solmut = dijkstra.initialiseSingleSource(testi, 1, 3);
-        
-        assertEquals(testi.length * testi[0].length, solmut.size());
+
+        Solmu[][] solmut = dijkstra.initialiseSingleSource(testi, 1, 3);
+
+        assertEquals(testi.length * testi[0].length, solmut.length * solmut[0].length);
     }
-    
+
     @Test
-    public void testaaLisaakoMetodiKaikkiSolmutKekoon() {
-        
-        ArrayList<Solmu> solmut = dijkstra.initialiseSingleSource(testi, 1, 3);
-        
-        PriorityQueue<Solmu> keko = new PriorityQueue();
-        
-        dijkstra.lisaaSolmutKekoon(keko, solmut);
-        
-        assertEquals(testi.length * testi[0].length, keko.size());
+    public void testaaRatkaisunPituus() {
+
+        Solmu[][] solmut = dijkstra.ratkaise(testi, 3, 1);
+
+        assertEquals(7, solmut[1][6].getDistance());
+        assertEquals(8, solmut[2][8].getDistance());
     }
-    
+
     @Test
-    public void testaaTulevatkoSolmutKekoonOikeassaJarjestyksessa() {
-        
-        ArrayList<Solmu> solmut = dijkstra.initialiseSingleSource(testi, 1, 3);
-        
-        PriorityQueue<Solmu> keko = new PriorityQueue();
-        
-        dijkstra.lisaaSolmutKekoon(keko, solmut);
-        
-        Solmu solmu = keko.poll();
-        
-        assertEquals(1, solmu.getX());
-        assertEquals(3, solmu.getY());
+    public void testaaRatkaisunPolku() {
+
+        Solmu[][] solmut = dijkstra.ratkaise(testi, 3, 1);
+
+        Solmu[] polku = new Solmu[8];
+        Solmu solmu = solmut[1][6];
+        polku[0] = solmu;
+
+        for (int i = 1; i < 8; i++) {
+
+            solmu = solmu.getPath();
+            polku[i] = solmu;
+        }
+
+        assertEquals(solmut[1][6], polku[0]);
+        assertEquals(solmut[1][5], polku[1]);
+        assertEquals(solmut[2][5], polku[2]);
+        assertEquals(solmut[3][5], polku[3]);
+        assertEquals(solmut[3][4], polku[4]);
+        assertEquals(solmut[3][3], polku[5]);
+        assertEquals(solmut[3][2], polku[6]);
+        assertEquals(solmut[3][1], polku[7]);
     }
+
+//    @Test
+//    public void testaaLisaakoMetodiKaikkiSolmutKekoon() {
+//        
+//        Solmu[][] solmut = dijkstra.initialiseSingleSource(testi, 1, 3);
+//        
+//        PriorityQueue<Solmu> keko = new PriorityQueue();
+//        
+//        dijkstra.lisaaSolmutKekoon(keko, solmut);
+//        
+//        assertEquals(testi.length * testi[0].length, keko.size());
+//    }
 }

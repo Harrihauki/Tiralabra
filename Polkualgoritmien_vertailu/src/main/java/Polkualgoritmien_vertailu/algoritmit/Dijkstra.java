@@ -31,7 +31,7 @@ public class Dijkstra {
      * @param aloitusY aloituspisteen y-koordinaatti
      * @return reitin pituus
      */
-    public int ratkaise(char[][] kartta, int aloitusX, int aloitusY) {
+    public Solmu[][] ratkaise(char[][] kartta, int aloitusX, int aloitusY) {
 
         Solmu[][] solmut = initialiseSingleSource(kartta, aloitusX, aloitusY);
 
@@ -41,7 +41,7 @@ public class Dijkstra {
 
         etsiPolut(solmut, keko, kartta);
 
-        return 0;
+        return solmut;
     }
 
     /**
@@ -70,12 +70,12 @@ public class Dijkstra {
      * @param keko Keko, johon solmut lisätään
      * @param solmut Lista solmuista
      */
-    public void lisaaSolmutKekoon(PriorityQueue<Solmu> keko, List<Solmu> solmut) {
-
-        for (Solmu solmu : solmut) {
-            keko.add(solmu);
-        }
-    }
+//    public void lisaaSolmutKekoon(PriorityQueue<Solmu> keko, List<Solmu> solmut) {
+//
+//        for (Solmu solmu : solmut) {
+//            keko.add(solmu);
+//        }
+//    }
 
     /**
      * Metodi etsii lyhimmän polun lähtösolmusta muihin solmuihin
@@ -122,6 +122,7 @@ public class Dijkstra {
         if (kohdesolmu.getDistance() > u.getDistance() + etaisyys) {
             kohdesolmu.setDistance(u.getDistance() + etaisyys);
             keko.add(kohdesolmu);
+            kohdesolmu.setPath(u);
         }
     }
 
@@ -137,7 +138,7 @@ public class Dijkstra {
      */
     private void tutkiVierussolmut(Solmu u, int kohdeX, int kohdeY, Solmu[][] solmut, char[][] kartta, PriorityQueue<Solmu> keko) {
 
-        if (solmut[u.getX() + 1][u.getY()] == null) {
+        if (solmut[kohdeX][kohdeY] == null) {
             if (kartta[kohdeX][kohdeY] != '#') {
                 solmut[kohdeX][kohdeY] = new Solmu(kohdeX, kohdeY);
             }
