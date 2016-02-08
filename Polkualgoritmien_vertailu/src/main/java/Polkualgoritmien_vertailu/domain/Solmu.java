@@ -90,4 +90,10 @@ public class Solmu implements Comparable {
         
         return 0;
     }
+    
+    @Override
+    public String toString() {
+        
+        return "" + this.x + "," + this.y;
+    }
 }

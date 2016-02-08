@@ -1,8 +1,6 @@
 package Polkualgoritmien_vertailu.algoritmit;
 
 import Polkualgoritmien_vertailu.domain.Solmu;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.PriorityQueue;
 
 /*
