@@ -16,9 +16,13 @@ public class Solmu implements Comparable {
     private int x;
     private int y;
     private int distance;
+    private int distanceToGo;
     private Solmu path;
     
     /**
+     * 
+     * x ja y ovat solmun koordinaatit kartalla. distanceToGo on Astarin jäljellä
+     * olevan etäisyyden arviointia varten, eikä sitä käytetä Dijkstrassa ollenkaan
      *
      * @param x
      * @param y
@@ -28,6 +32,7 @@ public class Solmu implements Comparable {
         this.y = y;
         this.distance = Integer.MAX_VALUE;
         this.path = null;
+//        this.distanceToGo = Integer.MAX_VALUE;
     }
     
     /**
