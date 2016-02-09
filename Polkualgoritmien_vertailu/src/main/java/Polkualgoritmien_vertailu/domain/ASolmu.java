@@ -14,10 +14,12 @@ package Polkualgoritmien_vertailu.domain;
 public class ASolmu extends Solmu {
 
     int distanceToGo;
+    ASolmu path;
 
     public ASolmu(int x, int y) {
         super(x, y);
         this.distanceToGo = Integer.MAX_VALUE;
+        this.path = null;
     }
 
     public void setDistanceToGo(int distanceToGo) {
@@ -39,5 +41,14 @@ public class ASolmu extends Solmu {
         }
 
         return 0;
+    }
+    
+    public void setPath(ASolmu path) {
+        this.path = path;
+    }
+    
+    @Override
+    public ASolmu getPath() {
+        return this.path;
     }
 }
