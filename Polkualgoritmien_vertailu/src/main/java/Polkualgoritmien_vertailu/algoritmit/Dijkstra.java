@@ -1,6 +1,7 @@
 package Polkualgoritmien_vertailu.algoritmit;
 
 import Polkualgoritmien_vertailu.domain.Solmu;
+import Polkualgoritmien_vertailu.tietorakenteet.Heap;
 import java.util.PriorityQueue;
 
 /*
@@ -29,15 +30,16 @@ public class Dijkstra {
      * @param aloitusY aloituspisteen y-koordinaatti
      * @return reitin pituus
      */
-    public Solmu[][] ratkaise(char[][] kartta, int aloitusX, int aloitusY) {
+    public Solmu[][] ratkaise(char[][] kartta, int aloitusX, int aloitusY, int maaliX, int maaliY) {
 
         Solmu[][] solmut = initialiseSingleSource(kartta, aloitusX, aloitusY);
 
-        PriorityQueue<Solmu> keko = new PriorityQueue();
+//        PriorityQueue<Solmu> keko = new PriorityQueue();
+        Heap keko = new Heap(kartta);
 
         keko.add(solmut[aloitusX][aloitusY]);
 
-        etsiPolut(solmut, keko, kartta);
+        etsiPolut(solmut, keko, kartta, maaliX, maaliY);
 
         return solmut;
     }
@@ -83,11 +85,21 @@ public class Dijkstra {
      * vaikuttavaan solmuun
      * @param kartta Matriisi, joka kuvaa halutun ympäristön
      */
-    private void etsiPolut(Solmu[][] solmut, PriorityQueue<Solmu> keko, char[][] kartta) {
+    private void etsiPolut(Solmu[][] solmut, Heap keko, char[][] kartta, int maaliX, int maaliY) {
 
         while (!keko.isEmpty()) {
 
             Solmu u = keko.poll();
+            
+            if (u.getPulled()) {
+                continue;
+            }
+            
+            if (u.getX() == maaliX && u.getY() == maaliY) {
+                break;
+            }
+            
+            u.pulled();
 
             tutkiVierussolmut(u, u.getX() + 1, u.getY(), solmut, kartta, keko);
             tutkiVierussolmut(u, u.getX() - 1, u.getY(), solmut, kartta, keko);
@@ -108,7 +120,7 @@ public class Dijkstra {
      * @param keko Keon avulla valvotaan, että aina siirrytään parhaalta
      * vaikuttavaan solmuun
      */
-    private void relax(Solmu u, Solmu kohdesolmu, char maasto, PriorityQueue<Solmu> keko) {
+    private void relax(Solmu u, Solmu kohdesolmu, char maasto, Heap keko) {
 
         int etaisyys = 0;
 
@@ -134,7 +146,7 @@ public class Dijkstra {
      * @param kartta    Matriisi, joka kuvaa halutun ympäristön
      * @param keko      Sama keko kuin kaikkialla muuallakin
      */
-    private void tutkiVierussolmut(Solmu u, int kohdeX, int kohdeY, Solmu[][] solmut, char[][] kartta, PriorityQueue<Solmu> keko) {
+    private void tutkiVierussolmut(Solmu u, int kohdeX, int kohdeY, Solmu[][] solmut, char[][] kartta, Heap keko) {
 
         if (solmut[kohdeX][kohdeY] == null) {
             if (kartta[kohdeX][kohdeY] != '#') {

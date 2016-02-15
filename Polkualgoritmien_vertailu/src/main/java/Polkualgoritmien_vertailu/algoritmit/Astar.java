@@ -6,6 +6,8 @@
 package Polkualgoritmien_vertailu.algoritmit;
 
 import Polkualgoritmien_vertailu.domain.ASolmu;
+import Polkualgoritmien_vertailu.domain.Solmu;
+import Polkualgoritmien_vertailu.tietorakenteet.Heap;
 import java.util.PriorityQueue;
 
 /**
@@ -33,7 +35,8 @@ public class Astar {
         
         ASolmu[][] solmut = initialiseSingleSource(kartta, aloitusX, aloitusY);
         
-        PriorityQueue<ASolmu> keko = new PriorityQueue();
+//        PriorityQueue<ASolmu> keko = new PriorityQueue();
+        Heap keko = new Heap(kartta);
         
         keko.add(solmut[aloitusX][aloitusY]);
         
@@ -70,11 +73,17 @@ public class Astar {
      * vaikuttavaan solmuun
      * @param kartta Matriisi, joka kuvaa halutun ympäristön
      */
-    private void etsiPolut(ASolmu[][] solmut, PriorityQueue<ASolmu> keko, char[][] kartta, int maaliX, int maaliY) {
+    private void etsiPolut(ASolmu[][] solmut, Heap keko, char[][] kartta, int maaliX, int maaliY) {
         
         while (!keko.isEmpty()) {
             
-            ASolmu u = keko.poll();
+            Solmu u = keko.poll();
+            
+            if (u.getPulled()) {
+                continue;
+            }
+            
+            u.pulled();
             
             if (u.getX() == maaliX && u.getY() == maaliY) {
                 break;
@@ -99,7 +108,7 @@ public class Astar {
      * @param keko Keon avulla valvotaan, että aina siirrytään parhaalta
      * vaikuttavaan solmuun
      */
-    private void relax(ASolmu u, ASolmu kohdesolmu, char maasto, PriorityQueue<ASolmu> keko) {
+    private void relax(Solmu u, Solmu kohdesolmu, char maasto, Heap keko) {
         
         int etaisyys = 0;
 
@@ -126,7 +135,7 @@ public class Astar {
      * @param kartta Matriisi, joka kuvaa halutun ympäristön
      * @param keko Sama keko kuin kaikkialla muuallakin
      */
-    private void tutkiVierussolmut(ASolmu u, int kohdeX, int kohdeY, ASolmu[][] solmut, char[][] kartta, PriorityQueue<ASolmu> keko, int maaliX, int maaliY) {
+    private void tutkiVierussolmut(Solmu u, int kohdeX, int kohdeY, ASolmu[][] solmut, char[][] kartta, Heap keko, int maaliX, int maaliY) {
         
         if (solmut[kohdeX][kohdeY] == null) {
             if (kartta[kohdeX][kohdeY] != '#') {

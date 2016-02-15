@@ -81,16 +81,18 @@ public class DijkstraTest {
     @Test
     public void testaaRatkaisunPituus() {
 
-        Solmu[][] solmut = dijkstra.ratkaise(testi, 3, 1);
+        Solmu[][] solmut = dijkstra.ratkaise(testi, 3, 1, 1, 6);
 
         assertEquals(7, solmut[1][6].getDistance());
+        
+        solmut = dijkstra.ratkaise(testi, 3, 1, 2, 8);
         assertEquals(8, solmut[2][8].getDistance());
     }
 
     @Test
     public void testaaRatkaisunPolku() {
 
-        Solmu[][] solmut = dijkstra.ratkaise(testi, 3, 1);
+        Solmu[][] solmut = dijkstra.ratkaise(testi, 3, 1, 1, 6);
 
         Solmu[] polku = new Solmu[8];
         Solmu solmu = solmut[1][6];
