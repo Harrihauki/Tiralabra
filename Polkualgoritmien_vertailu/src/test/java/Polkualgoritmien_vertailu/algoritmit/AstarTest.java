@@ -97,7 +97,7 @@ public class AstarTest {
 
         for (int i = 1; i < 8; i++) {
 
-            solmu = solmu.getPath();
+            solmu = (ASolmu) solmu.getPath();
             polku[i] = solmu;
         }
 
