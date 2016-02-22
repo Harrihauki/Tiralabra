@@ -118,6 +118,8 @@ public class Astar {
         //maastoon tulee myöhemmin eri vaihtoehtoja, jotka vaikuttavat etäisyyteen
         if (maasto == '.') {
             etaisyys = 1;
+        } else if (maasto == '/') {
+            etaisyys = 3;
         }
         
         if (kohdesolmu.getDistance() > u.getDistance() + etaisyys) {

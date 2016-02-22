@@ -5,6 +5,7 @@
  */
 package Polkualgoritmien_vertailu.Main;
 
+import Polkualgoritmien_vertailu.Sokkelogeneraattori.Sokkelogeneraattori;
 import Polkualgoritmien_vertailu.algoritmit.Astar;
 import Polkualgoritmien_vertailu.algoritmit.Dijkstra;
 import Polkualgoritmien_vertailu.domain.Solmu;
@@ -40,24 +41,39 @@ public class Main {
         Scanner lukija = new Scanner(System.in);
         Dijkstra dijkstra = new Dijkstra();
         Astar astar = new Astar();
+        Sokkelogeneraattori generaattori = new Sokkelogeneraattori();
+        
+        System.out.println("Anna sokkelon leveys: ");
+        int leveys = Integer.parseInt(lukija.nextLine());
+        System.out.println("Anna sokkelon korkeus: ");
+        int korkeus = Integer.parseInt(lukija.nextLine());
 
-        System.out.println("Maalipiste on 1,6");
+        System.out.println("Älä anna lähtö- tai maalipisteitä aivan sokkelon reunoilta,\n"
+                + "sillä algoritmit voivat tällöin hypätä ulos taulukoista.\n");
+        
+        System.out.println("Anna maalipisteen x-koordinaatti: ");
+        int maaliX = Integer.parseInt(lukija.nextLine());
+        System.out.println("Anna maalipisteen y-koordinaatti: ");
+        int maaliY = Integer.parseInt(lukija.nextLine());
+        
         System.out.println("Anna lähtöpisteen x-koordinaatti: ");
         int x = Integer.parseInt(lukija.nextLine());
         System.out.println("Anna lähtöpisteen y-koordinaatti: ");
         int y = Integer.parseInt(lukija.nextLine());
+        
+        char[][] sokkelo = generaattori.luoKartta(leveys, korkeus, x, y, maaliX, maaliY);
 
         long aikaAlussa = System.currentTimeMillis();
-        Solmu[][] ratkaisu = dijkstra.ratkaise(testi, x, y, 1, 6);
+        Solmu[][] ratkaisu = dijkstra.ratkaise(sokkelo, x, y, maaliX, maaliY);
         long aikaLopussa = System.currentTimeMillis();
         System.out.println("Operaatioon kului aikaa: " + (aikaLopussa - aikaAlussa) + "ms.");
-        System.out.println("polun pituus: " + ratkaisu[1][6].getDistance());
+        System.out.println("polun pituus: " + ratkaisu[maaliX][maaliY].getDistance());
         
         aikaAlussa = System.currentTimeMillis();
-        ratkaisu = astar.ratkaise(testi, x, y, 1, 6);
+        ratkaisu = astar.ratkaise(sokkelo, x, y, maaliX, maaliY);
         aikaLopussa = System.currentTimeMillis();
         System.out.println("Operaatioon kului aikaa: " + (aikaLopussa - aikaAlussa) + "ms.");
-        System.out.println("polun pituus: " + ratkaisu[1][6].getDistance());
+        System.out.println("polun pituus: " + ratkaisu[maaliX][maaliY].getDistance());
 
 //        while(true) {
 //            System.out.println("Haluatko lyhimmän reitin pituuden lähtöpisteestä ('pituus')\nlyhimmän reitin lähtöpisteestä ('reitti')\nvai lopettaa('lopeta')?");
