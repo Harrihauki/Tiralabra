@@ -75,7 +75,7 @@ public class Heap {
             return;
         }
         
-        while ((i > 0 && solmu.compareTo(this.keko[parent(i)]) <= 0) || this.keko[parent(i)].getPulled()) {
+        while (i > 0 && solmu.compareTo(this.keko[parent(i)]) <= 0) {
             this.keko[i] = this.keko[parent(i)];
             i = parent(i);
         }
@@ -133,7 +133,7 @@ public class Heap {
                 smallest = r;
             }
                         
-            if (keko[i].compareTo(keko[smallest]) >= 0 || keko[smallest].getPulled()) {
+            if (keko[i].compareTo(keko[smallest]) >= 0) {
                 Solmu apu = keko[i];
                 keko[i] = keko[smallest];
                 keko[smallest] = apu;

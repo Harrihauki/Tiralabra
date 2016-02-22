@@ -17,6 +17,8 @@ import java.util.PriorityQueue;
  */
 public class Astar {
     
+    boolean[][] onkoNostettu;
+    
     public Astar() {
         
     }
@@ -34,6 +36,7 @@ public class Astar {
     public ASolmu[][] ratkaise(char[][] kartta, int aloitusX, int aloitusY, int maaliX, int maaliY) {
         
         ASolmu[][] solmut = initialiseSingleSource(kartta, aloitusX, aloitusY);
+        this.onkoNostettu = new boolean[kartta.length][kartta[0].length];
         
 //        PriorityQueue<ASolmu> keko = new PriorityQueue();
         Heap keko = new Heap(kartta);
@@ -79,15 +82,15 @@ public class Astar {
             
             Solmu u = keko.poll();
             
-            if (u.getPulled()) {
+            if (this.onkoNostettu[u.getX()][u.getY()]) {
                 continue;
             }
-            
-            u.pulled();
             
             if (u.getX() == maaliX && u.getY() == maaliY) {
                 break;
             }
+            
+            this.onkoNostettu[u.getX()][u.getY()] = true;
             
             tutkiVierussolmut(u, u.getX() + 1, u.getY(), solmut, kartta, keko, maaliX, maaliY);
             tutkiVierussolmut(u, u.getX() - 1, u.getY(), solmut, kartta, keko, maaliX, maaliY);

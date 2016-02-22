@@ -15,17 +15,19 @@ import java.util.PriorityQueue;
  */
 public class Dijkstra {
 
+    boolean[][] onkoNostettu;
+    
     /**
      *
      */
     public Dijkstra() {
-
+        
     }
 
     /**
-     * Metodi etsii lyhimmän reitin aloituspisteestä maalipisteeseen
+     * Metodi etsii lyhimmÃ¤n reitin aloituspisteestÃ¤ maalipisteeseen
      *
-     * @param kartta matriisi, joka kuvaa halutun ympäristön
+     * @param kartta matriisi, joka kuvaa halutun ympÃ¤ristÃ¶n
      * @param aloitusX aloituspisteen x-koordinaatti
      * @param aloitusY aloituspisteen y-koordinaatti
      * @return reitin pituus
@@ -33,6 +35,7 @@ public class Dijkstra {
     public Solmu[][] ratkaise(char[][] kartta, int aloitusX, int aloitusY, int maaliX, int maaliY) {
 
         Solmu[][] solmut = initialiseSingleSource(kartta, aloitusX, aloitusY);
+        this.onkoNostettu = new boolean[kartta.length][kartta[0].length];
 
 //        PriorityQueue<Solmu> keko = new PriorityQueue();
         Heap keko = new Heap(kartta);
@@ -48,10 +51,10 @@ public class Dijkstra {
      * Algoritmin alustus. Vain aloitussolmu tarvitsee alustaa taulukkoon, muut
      * lasketaan ja luodaan algoritmin suoritusaikana.
      *
-     * @param kartta matriisi, joka kuvaa halutun ympäristön
+     * @param kartta matriisi, joka kuvaa halutun ympÃ¤ristÃ¶n
      * @param aloitusX aloituspisteen x-koordinaatti
      * @param aloitusY aloituspisteen y-koordinaatti
-     * @return lista kaikista kartan pisteistä alustettuna
+     * @return lista kaikista kartan pisteistÃ¤ alustettuna
      */
     public Solmu[][] initialiseSingleSource(char[][] kartta, int aloitusX, int aloitusY) {
 
@@ -65,9 +68,9 @@ public class Dijkstra {
     }
 
     /**
-     * Metodi lisää solmut kekoon
+     * Metodi lisÃ¤Ã¤ solmut kekoon
      *
-     * @param keko Keko, johon solmut lisätään
+     * @param keko Keko, johon solmut lisÃ¤tÃ¤Ã¤n
      * @param solmut Lista solmuista
      */
 //    public void lisaaSolmutKekoon(PriorityQueue<Solmu> keko, List<Solmu> solmut) {
@@ -78,12 +81,12 @@ public class Dijkstra {
 //    }
 
     /**
-     * Metodi etsii lyhimmän polun lähtösolmusta muihin solmuihin
+     * Metodi etsii lyhimmÃ¤n polun lÃ¤htÃ¶solmusta muihin solmuihin
      *
-     * @param solmut Taulukko, johon algoritmin edetessä merkitään solmut
-     * @param keko Keon avulla valvotaan, että aina siirrytään parhaalta
+     * @param solmut Taulukko, johon algoritmin edetessÃ¤ merkitÃ¤Ã¤n solmut
+     * @param keko Keon avulla valvotaan, ettÃ¤ aina siirrytÃ¤Ã¤n parhaalta
      * vaikuttavaan solmuun
-     * @param kartta Matriisi, joka kuvaa halutun ympäristön
+     * @param kartta Matriisi, joka kuvaa halutun ympÃ¤ristÃ¶n
      */
     private void etsiPolut(Solmu[][] solmut, Heap keko, char[][] kartta, int maaliX, int maaliY) {
 
@@ -91,7 +94,7 @@ public class Dijkstra {
 
             Solmu u = keko.poll();
             
-            if (u.getPulled()) {
+            if (this.onkoNostettu[u.getX()][u.getY()]) {
                 continue;
             }
             
@@ -99,7 +102,7 @@ public class Dijkstra {
                 break;
             }
             
-            u.pulled();
+            this.onkoNostettu[u.getX()][u.getY()] = true;
 
             tutkiVierussolmut(u, u.getX() + 1, u.getY(), solmut, kartta, keko);
             tutkiVierussolmut(u, u.getX() - 1, u.getY(), solmut, kartta, keko);
@@ -113,18 +116,18 @@ public class Dijkstra {
      * Metodi tutkii, onko solmusta sen vierussolmuun kulkeva reitti lyhin tois-
      * taiseksi tunnettu reitti.
      *
-     * @param u Käsittelyssä oleva solmu
+     * @param u KÃ¤sittelyssÃ¤ oleva solmu
      * @param kohdesolmu u:n vierussolmu
      * @param maasto Merkki, jolla kuvataan maaston vaikeutta u:n ja kohdesolmun
-     * välillä
-     * @param keko Keon avulla valvotaan, että aina siirrytään parhaalta
+     * vÃ¤lillÃ¤
+     * @param keko Keon avulla valvotaan, ettÃ¤ aina siirrytÃ¤Ã¤n parhaalta
      * vaikuttavaan solmuun
      */
     private void relax(Solmu u, Solmu kohdesolmu, char maasto, Heap keko) {
 
         int etaisyys = 0;
 
-        //maastoon tulee myöhemmin eri vaihtoehtoja, jotka vaikuttavat etäisyyteen
+        //maastoon tulee myÃ¶hemmin eri vaihtoehtoja, jotka vaikuttavat etÃ¤isyyteen
         if (maasto == '.') {
             etaisyys = 1;
         } else if (maasto == '/') {
@@ -141,11 +144,11 @@ public class Dijkstra {
     /**
      * Metodi tutkii pisteen mahdollista vierussolmua
      *
-     * @param u Käsittelyssä olevaa pistettä vastaava solmu
+     * @param u KÃ¤sittelyssÃ¤ olevaa pistettÃ¤ vastaava solmu
      * @param kohdeX    kohdepisteen x-koordinaatti
      * @param kohdeY    kohdepisteen y-koordinaatti
      * @param solmut    matriisi, johon tallenetaan kutankin koordinaattia vastaava solmu
-     * @param kartta    Matriisi, joka kuvaa halutun ympäristön
+     * @param kartta    Matriisi, joka kuvaa halutun ympÃ¤ristÃ¶n
      * @param keko      Sama keko kuin kaikkialla muuallakin
      */
     private void tutkiVierussolmut(Solmu u, int kohdeX, int kohdeY, Solmu[][] solmut, char[][] kartta, Heap keko) {

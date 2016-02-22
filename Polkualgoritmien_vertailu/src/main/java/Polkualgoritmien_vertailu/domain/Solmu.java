@@ -18,7 +18,6 @@ public class Solmu implements Comparable {
     private int distance;
     private int distanceToGo;
     private Solmu path;
-    private boolean pulled;
     
     /**
      * 
@@ -32,17 +31,8 @@ public class Solmu implements Comparable {
         this.y = y;
         this.distance = Integer.MAX_VALUE;
         this.path = null;
-        this.pulled = false;
 //        this.distanceToGo = Integer.MAX_VALUE;
-    }
-    
-    public boolean getPulled() {
-        return this.pulled;
-    }
-    
-    public void pulled() {
-        this.pulled = true;
-    }
+    }    
     
     /**
      *
