@@ -1,4 +1,4 @@
-package Polkualgoritmien_vertailu.algoritmit;
+    package Polkualgoritmien_vertailu.algoritmit;
 
 import Polkualgoritmien_vertailu.domain.Solmu;
 import Polkualgoritmien_vertailu.tietorakenteet.Heap;
