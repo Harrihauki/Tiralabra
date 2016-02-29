@@ -29,3 +29,5 @@
 28.2. StackOverflow vaivaa päätäni edelleen. En keksi millään, mistä johtuu. En vain käsitä. Koitettu korjata erilaisilla viritelmillä, mutta niin vain ongelma vaivaa edelleen. - 2h
 
 29.2. StackOverflow ratkaistu: Ohjelmaan oli jäänyt virhe, jossa vahingossa muutan jo keossa olevan solmun etäisyysarviota sen sijaan, että loisin samoilla sijainneilla, mutta uusilla etäisyyksillä varustetun uuden solmun, jonka lisään kekoon. Samaan tietoon viittaaminen luultavasti aiheutti tulppia kekoon ja rikkoi kekoehdon. Nyt A*:kin sietää huomattavasti isompia syötteitä. Lisäksi paperilla vähän hahmoteltu pseudokoodia ja vaativuuksia. Jos saisi tänään myöhemmin niitä vähän valmiimmiksi, niin olisi kiva, mutta nyt ei ehdi. - 3h
+
+29.2. - osa 2. Pseudokoodin hahmottelua jatkettu ja metodien vaativuuksia ja optimointimahdollisuuksia pohdittu. Esimerkiksi duplikaattien vaikutusta lopulliseen vaativuuteen. Hiukan turhia kommentteja siivottu pois koodista. - 2h
