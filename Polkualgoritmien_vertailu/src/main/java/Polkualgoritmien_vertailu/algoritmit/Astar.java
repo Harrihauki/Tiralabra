@@ -8,7 +8,6 @@ package Polkualgoritmien_vertailu.algoritmit;
 import Polkualgoritmien_vertailu.domain.ASolmu;
 import Polkualgoritmien_vertailu.domain.Solmu;
 import Polkualgoritmien_vertailu.tietorakenteet.Heap;
-import java.util.PriorityQueue;
 
 /**
  * A*-algoritmin toimintaa mallintava luokka.
@@ -111,7 +110,7 @@ public class Astar {
      * @param keko Keon avulla valvotaan, että aina siirrytään parhaalta
      * vaikuttavaan solmuun
      */
-    private void relax(Solmu u, Solmu kohdesolmu, char maasto, Heap keko) {
+    private ASolmu relax(Solmu u, ASolmu kohdesolmu, char maasto, Heap keko) {
         
         int etaisyys = 0;
 
@@ -123,10 +122,16 @@ public class Astar {
         }
         
         if (kohdesolmu.getDistance() > u.getDistance() + etaisyys) {
-            kohdesolmu.setDistance(u.getDistance() + etaisyys);
-            keko.add(kohdesolmu);
-            kohdesolmu.setPath(u);
+            ASolmu kohdesolmunDuplikaatti = new ASolmu(kohdesolmu.getX(), kohdesolmu.getY());
+            kohdesolmunDuplikaatti.setDistanceToGo(kohdesolmu.getDistanceToGo());
+            kohdesolmunDuplikaatti.setDistance(u.getDistance() + etaisyys);
+            keko.add(kohdesolmunDuplikaatti);
+            kohdesolmunDuplikaatti.setPath(u);
+            
+            return kohdesolmunDuplikaatti;
         }
+        
+        return kohdesolmu;
     }
 
     /**
@@ -162,7 +167,7 @@ public class Astar {
         }
         
         if (solmut[kohdeX][kohdeY] != null) {
-            relax(u, solmut[kohdeX][kohdeY], kartta[kohdeX][kohdeY], keko);
+            solmut[kohdeX][kohdeY] = relax(u, solmut[kohdeX][kohdeY], kartta[kohdeX][kohdeY], keko);
         }
     }
 }

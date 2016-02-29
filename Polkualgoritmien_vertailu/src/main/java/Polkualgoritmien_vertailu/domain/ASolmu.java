@@ -42,13 +42,4 @@ public class ASolmu extends Solmu {
 
         return 0;
     }
-    
-//    public void setPath(ASolmu path) {
-//        this.path = path;
-//    }
-    
-//    @Override
-//    public ASolmu getPath() {
-//        return this.path;
-//    }
 }

@@ -2,7 +2,6 @@
 
 import Polkualgoritmien_vertailu.domain.Solmu;
 import Polkualgoritmien_vertailu.tietorakenteet.Heap;
-import java.util.PriorityQueue;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -123,7 +122,7 @@ public class Dijkstra {
      * @param keko Keon avulla valvotaan, ettÃ¤ aina siirrytÃ¤Ã¤n parhaalta
      * vaikuttavaan solmuun
      */
-    private void relax(Solmu u, Solmu kohdesolmu, char maasto, Heap keko) {
+    private Solmu relax(Solmu u, Solmu kohdesolmu, char maasto, Heap keko) {
 
         int etaisyys = 0;
 
@@ -135,10 +134,15 @@ public class Dijkstra {
         }
 
         if (kohdesolmu.getDistance() > u.getDistance() + etaisyys) {
-            kohdesolmu.setDistance(u.getDistance() + etaisyys);
-            keko.add(kohdesolmu);
-            kohdesolmu.setPath(u);
+            Solmu kohdesolmunDuplikaatti = new Solmu(kohdesolmu.getX(), kohdesolmu.getY());
+            kohdesolmunDuplikaatti.setDistance(u.getDistance() + etaisyys);
+            keko.add(kohdesolmunDuplikaatti);
+            kohdesolmunDuplikaatti.setPath(u);
+            
+            return kohdesolmunDuplikaatti;
         }
+        
+        return kohdesolmu;
     }
 
     /**
@@ -160,7 +164,7 @@ public class Dijkstra {
         }
 
         if (solmut[kohdeX][kohdeY] != null) {
-            relax(u, solmut[kohdeX][kohdeY], kartta[kohdeX][kohdeY], keko);
+            solmut[kohdeX][kohdeY] = relax(u, solmut[kohdeX][kohdeY], kartta[kohdeX][kohdeY], keko);
         }
     }
 
