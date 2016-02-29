@@ -36,7 +36,6 @@ public class Dijkstra {
         Solmu[][] solmut = initialiseSingleSource(kartta, aloitusX, aloitusY);
         this.onkoNostettu = new boolean[kartta.length][kartta[0].length];
 
-//        PriorityQueue<Solmu> keko = new PriorityQueue();
         Heap keko = new Heap(kartta);
 
         keko.add(solmut[aloitusX][aloitusY]);
