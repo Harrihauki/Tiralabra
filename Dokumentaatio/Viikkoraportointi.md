@@ -31,3 +31,5 @@
 29.2. StackOverflow ratkaistu: Ohjelmaan oli jäänyt virhe, jossa vahingossa muutan jo keossa olevan solmun etäisyysarviota sen sijaan, että loisin samoilla sijainneilla, mutta uusilla etäisyyksillä varustetun uuden solmun, jonka lisään kekoon. Samaan tietoon viittaaminen luultavasti aiheutti tulppia kekoon ja rikkoi kekoehdon. Nyt A*:kin sietää huomattavasti isompia syötteitä. Lisäksi paperilla vähän hahmoteltu pseudokoodia ja vaativuuksia. Jos saisi tänään myöhemmin niitä vähän valmiimmiksi, niin olisi kiva, mutta nyt ei ehdi. - 3h
 
 29.2. - osa 2. Pseudokoodin hahmottelua jatkettu ja metodien vaativuuksia ja optimointimahdollisuuksia pohdittu. Esimerkiksi duplikaattien vaikutusta lopulliseen vaativuuteen. Hiukan turhia kommentteja siivottu pois koodista. - 2h
+
+1.3. Pseudokoodi koko lailla valmis paperilla - riippuen toki siitä, kuinka hieno ja tarkka sen halutaan olevan, mutta omasta mielestäni tarkoitukseen suunnilleen riittävä - ja vaativuudet päässä melko pitkälle hallussa. Huomenna vertaisarvioinnin, tarkemman dokumentoinnin ja laajemman testauksen pariin.
