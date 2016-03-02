@@ -32,4 +32,4 @@
 
 29.2. - osa 2. Pseudokoodin hahmottelua jatkettu ja metodien vaativuuksia ja optimointimahdollisuuksia pohdittu. Esimerkiksi duplikaattien vaikutusta lopulliseen vaativuuteen. Hiukan turhia kommentteja siivottu pois koodista. - 2h
 
-1.3. Pseudokoodi koko lailla valmis paperilla - riippuen toki siitä, kuinka hieno ja tarkka sen halutaan olevan, mutta omasta mielestäni tarkoitukseen suunnilleen riittävä - ja vaativuudet päässä melko pitkälle hallussa. Huomenna vertaisarvioinnin, tarkemman dokumentoinnin ja laajemman testauksen pariin.
+1.3. Pseudokoodi koko lailla valmis paperilla - riippuen toki siitä, kuinka hieno ja tarkka sen halutaan olevan, mutta omasta mielestäni tarkoitukseen suunnilleen riittävä - ja vaativuudet päässä melko pitkälle hallussa. Huomenna vertaisarvioinnin, tarkemman dokumentoinnin ja laajemman testauksen pariin. - 3h
