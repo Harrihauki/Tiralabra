@@ -26,12 +26,7 @@ public class Main {
         {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#'}};
 
     /**
-     * mainissa voi testata ohjelmaa. ylläolevaa testi-taulukkoa on helppo
-     * muokata, jos haluaa kokeilla erilaisia. '#' on seinä, pidä reunus niitä
-     * täynnä. Ohjelman on valmiina tarkoitus täyttää ne automaattisesti, joten
-     * tarkistusta taulukon ylittämiselle tai alittamiselle ei ole tehty.
-     * Toistaiseksi algoritmi kulkee vain '.'-merkin kohdilla, mutta myöhemmin
-     * tarkoitus tulla muitakin.
+     * mainissa voi testata ohjelmaa.
      *
      * @param args the command line arguments
      */
@@ -42,38 +37,71 @@ public class Main {
         Dijkstra dijkstra = new Dijkstra();
         Astar astar = new Astar();
         Sokkelogeneraattori generaattori = new Sokkelogeneraattori();
-        
-        System.out.println("Anna sokkelon leveys: ");
-        int leveys = Integer.parseInt(lukija.nextLine());
-        System.out.println("Anna sokkelon korkeus: ");
-        int korkeus = Integer.parseInt(lukija.nextLine());
+        String komento = "";
 
-        System.out.println("Älä anna lähtö- tai maalipisteitä aivan sokkelon reunoilta,\n"
-                + "sillä algoritmit voivat tällöin hypätä ulos taulukoista.\n");
-        
-        System.out.println("Anna maalipisteen x-koordinaatti: ");
-        int maaliX = Integer.parseInt(lukija.nextLine());
-        System.out.println("Anna maalipisteen y-koordinaatti: ");
-        int maaliY = Integer.parseInt(lukija.nextLine());
-        
-        System.out.println("Anna lähtöpisteen x-koordinaatti: ");
-        int x = Integer.parseInt(lukija.nextLine());
-        System.out.println("Anna lähtöpisteen y-koordinaatti: ");
-        int y = Integer.parseInt(lukija.nextLine());
-        
-        char[][] sokkelo = generaattori.luoKartta(leveys, korkeus, x, y, maaliX, maaliY);
+        System.out.println("Anna komento. 'x' lopettaa, 'kuva' havainnollistaa algoritmien etenemisen eroja\n"
+                + "pienen testisokkelon avulla ja muut komennot suorittavat suorituskykyvertailua antamillasi arvoilla.");
 
-        long aikaAlussa = System.currentTimeMillis();
-        Solmu[][] ratkaisu = dijkstra.ratkaise(sokkelo, x, y, maaliX, maaliY);
-        long aikaLopussa = System.currentTimeMillis();
-        System.out.println("Operaatioon kului aikaa: " + (aikaLopussa - aikaAlussa) + "ms.");
-        System.out.println("polun pituus: " + ratkaisu[maaliX][maaliY].getDistance());
-        
-        aikaAlussa = System.currentTimeMillis();
-        ratkaisu = astar.ratkaise(sokkelo, x, y, maaliX, maaliY);
-        aikaLopussa = System.currentTimeMillis();
-        System.out.println("Operaatioon kului aikaa: " + (aikaLopussa - aikaAlussa) + "ms.");
-        System.out.println("polun pituus: " + ratkaisu[maaliX][maaliY].getDistance());
+        komento = lukija.nextLine();
+
+        while (!komento.equals("x")) {
+
+            if (komento.equals("kuva")) {
+                kuva(generaattori, dijkstra, astar);
+            } else {
+                System.out.println("Anna sokkelon leveys: ");
+                int leveys = Integer.parseInt(lukija.nextLine());
+                System.out.println("Anna sokkelon korkeus: ");
+                int korkeus = Integer.parseInt(lukija.nextLine());
+
+                System.out.println("Älä anna lähtö- tai maalipisteitä aivan sokkelon reunoilta,\n"
+                        + "sillä algoritmit voivat tällöin hypätä ulos taulukoista.\n");
+
+                System.out.println("Anna maalipisteen x-koordinaatti: ");
+                int maaliX = Integer.parseInt(lukija.nextLine());
+                System.out.println("Anna maalipisteen y-koordinaatti: ");
+                int maaliY = Integer.parseInt(lukija.nextLine());
+
+                System.out.println("Anna lähtöpisteen x-koordinaatti: ");
+                int x = Integer.parseInt(lukija.nextLine());
+                System.out.println("Anna lähtöpisteen y-koordinaatti: ");
+                int y = Integer.parseInt(lukija.nextLine());
+
+                char[][] sokkelo = generaattori.luoKartta(leveys, korkeus, x, y, maaliX, maaliY);
+
+                long kokonaisaika = 0;
+                long aikaAlussa = 0;
+                long aikaLopussa = 0;
+                Solmu[][] ratkaisu = dijkstra.ratkaise(sokkelo, x, y, maaliX, maaliY);
+
+                for (int i = 0; i < 100; i++) {
+                    aikaAlussa = System.currentTimeMillis();
+                    ratkaisu = dijkstra.ratkaise(sokkelo, x, y, maaliX, maaliY);
+                    aikaLopussa = System.currentTimeMillis();
+                    kokonaisaika += aikaLopussa - aikaAlussa;
+                }
+
+                System.out.println("Dijkstraan kului aikaa keskimäärin: " + (1.0 * kokonaisaika / 100) + "ms.");
+                System.out.println("polun pituus: " + ratkaisu[maaliX][maaliY].getDistance());
+
+                kokonaisaika = 0;
+
+                for (int i = 0; i < 100; i++) {
+                    aikaAlussa = System.currentTimeMillis();
+                    ratkaisu = astar.ratkaise(sokkelo, x, y, maaliX, maaliY);
+                    aikaLopussa = System.currentTimeMillis();
+                    kokonaisaika += aikaLopussa - aikaAlussa;
+                }
+
+                System.out.println("Astariin kului keskimäärin aikaa: " + (1.0 * kokonaisaika / 100) + "ms.");
+                System.out.println("polun pituus: " + ratkaisu[maaliX][maaliY].getDistance());
+            }
+
+            System.out.println("Anna komento. 'x' lopettaa, 'kuva' havainnollistaa algoritmien etenemisen eroja\n"
+                    + "pienen testisokkelon avulla ja muut komennot suorittavat suorituskykyvertailua antamillasi arvoilla.");
+
+            komento = lukija.nextLine();
+        }
 
 //        while(true) {
 //            System.out.println("Haluatko lyhimmän reitin pituuden lähtöpisteestä ('pituus')\nlyhimmän reitin lähtöpisteestä ('reitti')\nvai lopettaa('lopeta')?");
@@ -116,6 +144,45 @@ public class Main {
 //                }
 //            }
 //        }
+    }
+
+    private static void kuva(Sokkelogeneraattori generaattori, Dijkstra dijkstra, Astar astar) {
+        
+        char[][] sokkelo = generaattori.luoKartta(25, 25, 15, 15, 3, 3);
+        
+        Solmu[][] solmut = dijkstra.ratkaise(sokkelo, 15, 15, 3, 3);
+        
+        for (int i = 0; i < solmut.length; i++) {
+            for (int j = 0; j < solmut[0].length; j++) {
+                if (solmut[i][j] != null) {
+                    if (solmut[i][j].getDistance() < 25) {
+                        System.out.print((char) (solmut[i][j].getDistance() + 'a'));
+                    }
+                } else {
+                    System.out.print(sokkelo[i][j]);
+                }
+            }
+            System.out.print("\n");
+        }
+        
+        System.out.println("");
+        
+        solmut = astar.ratkaise(sokkelo, 15, 15, 3, 3);
+        
+        for (int i = 0; i < solmut.length; i++) {
+            for (int j = 0; j < solmut[0].length; j++) {
+                if (solmut[i][j] != null) {
+                    if (solmut[i][j].getDistance() < 50) {
+                        System.out.print((char) (solmut[i][j].getDistance() + 'a'));
+                    }
+                } else {
+                    System.out.print(sokkelo[i][j]);
+                }
+            }
+            System.out.print("\n");
+        }
+        
+        System.out.println("");
     }
 
 }
