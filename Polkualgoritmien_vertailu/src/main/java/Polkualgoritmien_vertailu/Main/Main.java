@@ -102,48 +102,6 @@ public class Main {
 
             komento = lukija.nextLine();
         }
-
-//        while(true) {
-//            System.out.println("Haluatko lyhimmän reitin pituuden lähtöpisteestä ('pituus')\nlyhimmän reitin lähtöpisteestä ('reitti')\nvai lopettaa('lopeta')?");
-//            
-//            String komento = lukija.nextLine();
-//            
-//            if (komento.equals("pituus")) {
-//                System.out.println("anna halutun päätepisteen x-koordinaatti: ");
-//                int x2 = Integer.parseInt(lukija.nextLine());
-//                
-//                System.out.println("anna halutun päätepisteen y-koordinaatti: ");
-//                int y2 = Integer.parseInt(lukija.nextLine());
-//                
-//                System.out.println("pituus pisteeseen: " + ratkaisu[x2][y2].getDistance());
-//            } else if (komento.equals("reitti")) {
-//                Stack<Solmu> pino = new Stack();
-//                
-//                System.out.println("anna halutun päätepisteen x-koordinaatti: ");
-//                int x2 = Integer.parseInt(lukija.nextLine());
-//                
-//                System.out.println("anna halutun päätepisteen y-koordinaatti: ");
-//                int y2 = Integer.parseInt(lukija.nextLine());
-//                
-//                Solmu solmu = ratkaisu[x2][y2];
-//                
-//                System.out.println("reitti pisteeseen: ");
-//                
-//                while(true) {
-//                    if (solmu == null) {
-//                        break;
-//                    }
-//                    
-//                    pino.add(solmu);
-//                    solmu = solmu.getPath();
-//                }
-//                
-//                while(!pino.empty()) {
-//                    Solmu solmu2 = pino.pop();
-//                    System.out.println(solmu2);
-//                }
-//            }
-//        }
     }
 
     private static void kuva(Sokkelogeneraattori generaattori, Dijkstra dijkstra, Astar astar) {
