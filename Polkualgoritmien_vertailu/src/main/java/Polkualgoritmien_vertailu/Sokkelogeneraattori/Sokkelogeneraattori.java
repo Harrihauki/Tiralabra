@@ -16,10 +16,24 @@ public class Sokkelogeneraattori {
     
     Random arpoja;
     
+    /**
+     *
+     */
     public Sokkelogeneraattori() {
         this.arpoja = new Random();
     }
     
+    /**
+     * Luo sokkelon, jossa algoritmit navigoivat
+     *
+     * @param x sokkelon leveys
+     * @param y sokkelon pituus
+     * @param lahtoX lähtösolmun x-koordinaatti
+     * @param lahtoY lähtösolmun y-koordinaatti
+     * @param maaliX maalisolmun x-koordinaatti
+     * @param maaliY maalisolmun y-koordinaatti
+     * @return valmis sokkelo
+     */
     public char[][] luoKartta(int x, int y, int lahtoX, int lahtoY, int maaliX, int maaliY) {
         
         char[][] kartta = new char[x][y];
@@ -46,6 +60,11 @@ public class Sokkelogeneraattori {
         return kartta;
     }
 
+    /**
+     * Metodi tekee läpäisemättömät seinät sokkelon ympärille
+     * 
+     * @param kartta kaksiulotteinen taulukko, jolle seinät luodaan
+     */
     private void luoSeinat(char[][] kartta) {
         
         for (int i = 0; i < kartta.length; i++) {
