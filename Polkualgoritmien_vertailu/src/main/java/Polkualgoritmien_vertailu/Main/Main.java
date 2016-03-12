@@ -9,8 +9,8 @@ import Polkualgoritmien_vertailu.Sokkelogeneraattori.Sokkelogeneraattori;
 import Polkualgoritmien_vertailu.algoritmit.Astar;
 import Polkualgoritmien_vertailu.algoritmit.Dijkstra;
 import Polkualgoritmien_vertailu.domain.Solmu;
+import java.util.Random;
 import java.util.Scanner;
-import java.util.Stack;
 
 /**
  *
@@ -40,7 +40,9 @@ public class Main {
         String komento = "";
 
         System.out.println("Anna komento. 'x' lopettaa, 'kuva' havainnollistaa algoritmien etenemisen eroja\n"
-                + "pienen testisokkelon avulla ja muut komennot suorittavat suorituskykyvertailua antamillasi arvoilla.");
+                + "pienen testisokkelon avulla, 'pituustesti' vertaa, saavatko algoritmit saman tuloksen polun\n"
+                + "pituudelle, eli toimivatko algoritmit ja muut komennot suorittavat suorituskykyvertailua \n"
+                + "antamillasi arvoilla.");
 
         komento = lukija.nextLine();
 
@@ -48,6 +50,8 @@ public class Main {
 
             if (komento.equals("kuva")) {
                 kuva(generaattori, dijkstra, astar);
+            } else if (komento.equals("pituustesti")) {
+                pituus(generaattori, dijkstra, astar);
             } else {
                 System.out.println("Anna sokkelon leveys: ");
                 int leveys = Integer.parseInt(lukija.nextLine());
@@ -69,32 +73,39 @@ public class Main {
 
                 char[][] sokkelo = generaattori.luoKartta(leveys, korkeus, x, y, maaliX, maaliY);
 
-                long kokonaisaika = 0;
+                long dijkstranKokonaisaika = 0;
+                long astarinKokonaisaika = 0;
                 long aikaAlussa = 0;
                 long aikaLopussa = 0;
                 Solmu[][] ratkaisu = dijkstra.ratkaise(sokkelo, x, y, maaliX, maaliY);
 
                 for (int i = 0; i < 100; i++) {
+                    sokkelo = generaattori.luoKartta(leveys, korkeus, x, y, maaliX, maaliY);
+
                     aikaAlussa = System.currentTimeMillis();
                     ratkaisu = dijkstra.ratkaise(sokkelo, x, y, maaliX, maaliY);
                     aikaLopussa = System.currentTimeMillis();
-                    kokonaisaika += aikaLopussa - aikaAlussa;
-                }
+                    dijkstranKokonaisaika += aikaLopussa - aikaAlussa;
 
-                System.out.println("Dijkstraan kului aikaa keskimäärin: " + (1.0 * kokonaisaika / 100) + "ms.");
-                System.out.println("polun pituus: " + ratkaisu[maaliX][maaliY].getDistance());
-
-                kokonaisaika = 0;
-
-                for (int i = 0; i < 100; i++) {
                     aikaAlussa = System.currentTimeMillis();
                     ratkaisu = astar.ratkaise(sokkelo, x, y, maaliX, maaliY);
                     aikaLopussa = System.currentTimeMillis();
-                    kokonaisaika += aikaLopussa - aikaAlussa;
+                    astarinKokonaisaika += aikaLopussa - aikaAlussa;
                 }
 
-                System.out.println("Astariin kului keskimäärin aikaa: " + (1.0 * kokonaisaika / 100) + "ms.");
-                System.out.println("polun pituus: " + ratkaisu[maaliX][maaliY].getDistance());
+                System.out.println("Dijkstraan kului aikaa keskimäärin: " + (1.0 * dijkstranKokonaisaika / 100) + "ms.");
+//                System.out.println("polun pituus: " + ratkaisu[maaliX][maaliY].getDistance());
+
+//                kokonaisaika = 0;
+//
+//                for (int i = 0; i < 100; i++) {
+//                    aikaAlussa = System.currentTimeMillis();
+//                    ratkaisu = astar.ratkaise(sokkelo, x, y, maaliX, maaliY);
+//                    aikaLopussa = System.currentTimeMillis();
+//                    kokonaisaika += aikaLopussa - aikaAlussa;
+//                }
+                System.out.println("Astariin kului keskimäärin aikaa: " + (1.0 * astarinKokonaisaika / 100) + "ms.");
+//                System.out.println("polun pituus: " + ratkaisu[maaliX][maaliY].getDistance());
             }
 
             System.out.println("Anna komento. 'x' lopettaa, 'kuva' havainnollistaa algoritmien etenemisen eroja\n"
@@ -104,12 +115,20 @@ public class Main {
         }
     }
 
+    /**
+     * Tulostaa 25*25-kokoisen taulukon, jossa on havainnollisesti
+     * ascii-merkeillä mihin suuntaan algoritmit ovat lähteneet tutkimaan
+     *
+     * @param generaattori
+     * @param dijkstra
+     * @param astar
+     */
     private static void kuva(Sokkelogeneraattori generaattori, Dijkstra dijkstra, Astar astar) {
-        
+
         char[][] sokkelo = generaattori.luoKartta(25, 25, 15, 15, 3, 3);
-        
+
         Solmu[][] solmut = dijkstra.ratkaise(sokkelo, 15, 15, 3, 3);
-        
+
         for (int i = 0; i < solmut.length; i++) {
             for (int j = 0; j < solmut[0].length; j++) {
                 if (solmut[i][j] != null) {
@@ -122,11 +141,11 @@ public class Main {
             }
             System.out.print("\n");
         }
-        
+
         System.out.println("");
-        
+
         solmut = astar.ratkaise(sokkelo, 15, 15, 3, 3);
-        
+
         for (int i = 0; i < solmut.length; i++) {
             for (int j = 0; j < solmut[0].length; j++) {
                 if (solmut[i][j] != null) {
@@ -139,8 +158,36 @@ public class Main {
             }
             System.out.print("\n");
         }
-        
+
         System.out.println("");
     }
 
+    private static void pituus(Sokkelogeneraattori generaattori, Dijkstra dijkstra, Astar astar) {
+
+        Random arpoja = new Random();
+        
+        System.out.println("Metodi tulostaa true, jos algoritmit saavat saman\n"
+                + "polun pituuden ratkaisuksi sadalla eri 500*500-kokoisella sokkelolla,\n"
+                + "joiden lähtö- ja maalipisteet arvotaan.");
+        
+        for (int i = 0; i < 100; i++) {
+            int x = arpoja.nextInt(498)+1;
+            int y = arpoja.nextInt(498)+1;
+            int maaliX = arpoja.nextInt(498)+1;
+            int maaliY = arpoja.nextInt(498)+1;
+            char [][] sokkelo = generaattori.luoKartta(500, 500, x, y, maaliX, maaliY);
+
+            Solmu[][] dijkRatkaisu = dijkstra.ratkaise(sokkelo, x, y, maaliX, maaliY);
+
+            Solmu[][] astarRatkaisu = astar.ratkaise(sokkelo, x, y, maaliX, maaliY);
+
+            if (dijkRatkaisu[maaliX][maaliY] == null) {
+                continue;
+            } else if (dijkRatkaisu[maaliX][maaliY].getDistance() != astarRatkaisu[maaliX][maaliY].getDistance()) {
+                System.out.println("false");
+            }
+        }
+        
+        System.out.println("true");
+    }
 }
