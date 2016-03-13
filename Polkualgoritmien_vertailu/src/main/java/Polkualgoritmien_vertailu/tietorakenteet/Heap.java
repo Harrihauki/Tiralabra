@@ -61,10 +61,9 @@ public class Heap {
     }
     
     /**
-     * Metodi lisää uuden solmun kekoon oikealle paikalleen. Metodi huomioi jo vedettyjen
-     * solmujen duplikaatit ja hyppii niiden yli.
+     * Metodi lisää uuden solmun kekoon oikealle paikalleen.
      * 
-     * @param solmu 
+     * @param solmu lisättävä solmu
      */
     public void add(Solmu solmu) {
         this.heapSize++;
@@ -84,7 +83,7 @@ public class Heap {
     }
     
     /**
-     * Palauttaa indeksissä i olevan solmun vanhemman indeksin
+     * Palauttaa indeksissä i olevan solmun vanhemman indeksin.
      * 
      * @param i
      * @return indeksin i vanhemman indeksi
@@ -94,7 +93,7 @@ public class Heap {
     }
     
     /**
-     * Palauttaa indeksissä i olevan solmun vasemman lapsen indeksin
+     * Palauttaa indeksissä i olevan solmun vasemman lapsen indeksin.
      * 
      * @param i
      * @return  indeksin i vasemman lapsen indeksi
@@ -104,7 +103,7 @@ public class Heap {
     }
     
     /**
-     * Palauttaa indeksissä i olevan solmun oikean lapsen indeksin
+     * Palauttaa indeksissä i olevan solmun oikean lapsen indeksin.
      * 
      * @param i
      * @return  indeksin i oikean lapsen indeksi
@@ -114,8 +113,7 @@ public class Heap {
     }
     
     /**
-     * Pidetään huolta, että kekoehto säilyy indeksistä i alaspäin. Metodi huomioi
-     * jo vedettyjen solmujen duplikaatit ja hyppii niiden yli.
+     * Pidetään huolta, että kekoehto säilyy indeksistä i alaspäin.
      * 
      * @param i 
      */

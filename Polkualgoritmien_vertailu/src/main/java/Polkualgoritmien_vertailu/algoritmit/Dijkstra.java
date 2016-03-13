@@ -16,9 +16,7 @@ public class Dijkstra {
 
     boolean[][] onkoNostettu;
     
-    /**
-     *
-     */
+
     public Dijkstra() {
         
     }
@@ -64,19 +62,6 @@ public class Dijkstra {
 
         return solmut;
     }
-
-    /**
-     * Metodi lisÃ¤Ã¤ solmut kekoon
-     *
-     * @param keko Keko, johon solmut lisÃ¤tÃ¤Ã¤n
-     * @param solmut Lista solmuista
-     */
-//    public void lisaaSolmutKekoon(PriorityQueue<Solmu> keko, List<Solmu> solmut) {
-//
-//        for (Solmu solmu : solmut) {
-//            keko.add(solmu);
-//        }
-//    }
 
     /**
      * Metodi etsii lyhimmÃ¤n polun lÃ¤htÃ¶solmusta muihin solmuihin

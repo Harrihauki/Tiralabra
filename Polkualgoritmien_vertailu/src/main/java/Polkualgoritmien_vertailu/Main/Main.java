@@ -42,7 +42,7 @@ public class Main {
         System.out.println("Anna komento. 'x' lopettaa, 'kuva' havainnollistaa algoritmien etenemisen eroja\n"
                 + "pienen testisokkelon avulla, 'pituustesti' vertaa, saavatko algoritmit saman tuloksen polun\n"
                 + "pituudelle, eli toimivatko algoritmit ja muut komennot suorittavat suorituskykyvertailua \n"
-                + "antamillasi arvoilla.");
+                + "antamillasi arvoilla.\n");
 
         komento = lukija.nextLine();
 
@@ -58,8 +58,8 @@ public class Main {
                 System.out.println("Anna sokkelon korkeus: ");
                 int korkeus = Integer.parseInt(lukija.nextLine());
 
-                System.out.println("Älä anna lähtö- tai maalipisteitä aivan sokkelon reunoilta,\n"
-                        + "sillä algoritmit voivat tällöin hypätä ulos taulukoista.\n");
+                System.out.println("\nÄlä anna lähtö- tai maalipisteitä aivan sokkelon reunoilta,\n"
+                        + "sillä algoritmit voivat tällöin hypätä ulos taulukoista.\n\n");
 
                 System.out.println("Anna maalipisteen x-koordinaatti: ");
                 int maaliX = Integer.parseInt(lukija.nextLine());
@@ -71,6 +71,8 @@ public class Main {
                 System.out.println("Anna lähtöpisteen y-koordinaatti: ");
                 int y = Integer.parseInt(lukija.nextLine());
 
+                System.out.println("Odota...\n");
+                
                 char[][] sokkelo = generaattori.luoKartta(leveys, korkeus, x, y, maaliX, maaliY);
 
                 long dijkstranKokonaisaika = 0;
@@ -94,22 +96,14 @@ public class Main {
                 }
 
                 System.out.println("Dijkstraan kului aikaa keskimäärin: " + (1.0 * dijkstranKokonaisaika / 100) + "ms.");
-//                System.out.println("polun pituus: " + ratkaisu[maaliX][maaliY].getDistance());
 
-//                kokonaisaika = 0;
-//
-//                for (int i = 0; i < 100; i++) {
-//                    aikaAlussa = System.currentTimeMillis();
-//                    ratkaisu = astar.ratkaise(sokkelo, x, y, maaliX, maaliY);
-//                    aikaLopussa = System.currentTimeMillis();
-//                    kokonaisaika += aikaLopussa - aikaAlussa;
-//                }
                 System.out.println("Astariin kului keskimäärin aikaa: " + (1.0 * astarinKokonaisaika / 100) + "ms.");
-//                System.out.println("polun pituus: " + ratkaisu[maaliX][maaliY].getDistance());
             }
 
             System.out.println("Anna komento. 'x' lopettaa, 'kuva' havainnollistaa algoritmien etenemisen eroja\n"
-                    + "pienen testisokkelon avulla ja muut komennot suorittavat suorituskykyvertailua antamillasi arvoilla.");
+                + "pienen testisokkelon avulla, 'pituustesti' vertaa, saavatko algoritmit saman tuloksen polun\n"
+                + "pituudelle, eli toimivatko algoritmit ja muut komennot suorittavat suorituskykyvertailua \n"
+                + "antamillasi arvoilla.\n");
 
             komento = lukija.nextLine();
         }
@@ -177,7 +171,7 @@ public class Main {
         
         System.out.println("Metodi tulostaa true, jos algoritmit saavat saman\n"
                 + "polun pituuden ratkaisuksi sadalla eri 500*500-kokoisella sokkelolla,\n"
-                + "joiden lähtö- ja maalipisteet arvotaan.");
+                + "joiden lähtö- ja maalipisteet arvotaan.\n");
         
         for (int i = 0; i < 100; i++) {
             int x = arpoja.nextInt(498)+1;
@@ -193,10 +187,10 @@ public class Main {
             if (dijkRatkaisu[maaliX][maaliY] == null) {
                 continue;
             } else if (dijkRatkaisu[maaliX][maaliY].getDistance() != astarRatkaisu[maaliX][maaliY].getDistance()) {
-                System.out.println("false");
+                System.out.println("false\n");
             }
         }
         
-        System.out.println("true");
+        System.out.println("true\n");
     }
 }

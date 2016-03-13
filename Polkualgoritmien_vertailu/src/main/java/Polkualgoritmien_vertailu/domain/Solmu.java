@@ -16,7 +16,6 @@ public class Solmu implements Comparable {
     private int x;
     private int y;
     private int distance;
-    private int distanceToGo;
     private Solmu path;
     
     /**

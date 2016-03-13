@@ -114,7 +114,6 @@ public class Astar {
         
         int etaisyys = 0;
 
-        //maastoon tulee myöhemmin eri vaihtoehtoja, jotka vaikuttavat etäisyyteen
         if (maasto == '.') {
             etaisyys = 1;
         } else if (maasto == '/') {
