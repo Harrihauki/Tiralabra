@@ -117,7 +117,7 @@ public class Main {
 
     /**
      * Tulostaa 25*25-kokoisen taulukon, jossa on havainnollisesti
-     * ascii-merkeillä mihin suuntaan algoritmit ovat lähteneet tutkimaan
+     * ascii-merkeillä mihin suuntaan algoritmit ovat lähteneet tutkimaan.
      *
      * @param generaattori
      * @param dijkstra
@@ -162,6 +162,15 @@ public class Main {
         System.out.println("");
     }
 
+    /**
+     * Metodi luo sata satunnaista 500*500-kokoista sokkealoa, jotka se ratkaisee
+     * molemmilla algoritmeilla. Jos algoritmien ilmoittamat polun pituudet 
+     * eroavat, voi tehdä tulkinnan, että ainakaan toinen algoritmeista ei toimi.
+     * 
+     * @param generaattori sokkelogeneraattori sokkeloiden luomiseen.
+     * @param dijkstra Dajkstra-algoritmi
+     * @param astar A*-algoritmi
+     */
     private static void pituus(Sokkelogeneraattori generaattori, Dijkstra dijkstra, Astar astar) {
 
         Random arpoja = new Random();
