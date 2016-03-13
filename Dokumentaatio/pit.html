@@ -1,0 +1,148 @@
+<html>
+<head>
+  
+    <style type='text/css'>
+   
+   .tests{ 
+     width : 50%;
+     float : left;
+   }
+   
+   .mutees{
+     float : right;
+     width : 50%;
+   }
+   
+   .unit {
+     padding-top : 20px;
+     clear : both;
+   }
+   
+   .coverage_bar {
+    display : inline-block;
+    height : 1.1em;
+    width: 130px;
+    background: #FAA;
+    margin: 0 5px;
+    vertical-align: middle;
+    border: 1px solid #AAA;
+    position : relative;
+   }
+   
+   .coverage_complete {
+    display : inline-block;
+    height : 100%;
+    background: #DFD;
+    float: left;
+   }
+   
+   .coverage_ledgend {
+        position : absolute;
+        height : 100%;
+        width : 100%;
+        left : 0;
+        top : 0;
+        text-align : center;
+   }
+   
+   .line, .mut {
+        vertical-align : middle;
+   }
+   
+   .coveragePercentage {
+    display: inline-block;
+    width: 3em;
+    text-align: right;
+   }
+  </style>
+  
+</head>
+<body>
+
+<h1>Pit Test Coverage Report</h1>
+
+<h3>Project Summary</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Number of Classes</th>
+            <th>Line Coverage</th>
+            <th>Mutation Coverage</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>8</td>
+            <td>48% <div class="coverage_bar"><div class="coverage_complete" style="width:48%"></div><div class="coverage_ledgend">182/379</div></div></td>
+            <td>43% <div class="coverage_bar"><div class="coverage_complete" style="width:43%"></div><div class="coverage_ledgend">104/244</div></div></td>
+        </tr>
+    </tbody>
+</table>
+
+
+<h3>Breakdown by Package</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Number of Classes</th>
+            <th>Line Coverage</th>
+            <th>Mutation Coverage</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+            <td><a href="./Polkualgoritmien_vertailu.Main/index.html">Polkualgoritmien_vertailu.Main</a></td>
+            <td>1</td>
+            <td><div class="coveragePercentage">0% </div><div class="coverage_bar"><div class="coverage_complete" style="width:0%"></div><div class="coverage_ledgend">0/84</div></div></td>
+            <td><div class="coveragePercentage">0% </div><div class="coverage_bar"><div class="coverage_complete" style="width:0%"></div><div class="coverage_ledgend">0/67</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./Polkualgoritmien_vertailu.Sokkelogeneraattori/index.html">Polkualgoritmien_vertailu.Sokkelogeneraattori</a></td>
+            <td>1</td>
+            <td><div class="coveragePercentage">100% </div><div class="coverage_bar"><div class="coverage_complete" style="width:100%"></div><div class="coverage_ledgend">23/23</div></div></td>
+            <td><div class="coveragePercentage">64% </div><div class="coverage_bar"><div class="coverage_complete" style="width:64%"></div><div class="coverage_ledgend">14/22</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./Polkualgoritmien_vertailu.algoritmit/index.html">Polkualgoritmien_vertailu.algoritmit</a></td>
+            <td>2</td>
+            <td><div class="coveragePercentage">93% </div><div class="coverage_bar"><div class="coverage_complete" style="width:93%"></div><div class="coverage_ledgend">89/96</div></div></td>
+            <td><div class="coveragePercentage">65% </div><div class="coverage_bar"><div class="coverage_complete" style="width:65%"></div><div class="coverage_ledgend">50/77</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./Polkualgoritmien_vertailu.domain/index.html">Polkualgoritmien_vertailu.domain</a></td>
+            <td>2</td>
+            <td><div class="coveragePercentage">90% </div><div class="coverage_bar"><div class="coverage_complete" style="width:90%"></div><div class="coverage_ledgend">28/31</div></div></td>
+            <td><div class="coveragePercentage">71% </div><div class="coverage_bar"><div class="coverage_complete" style="width:71%"></div><div class="coverage_ledgend">10/14</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./Polkualgoritmien_vertailu.kayttoliittyma/index.html">Polkualgoritmien_vertailu.kayttoliittyma</a></td>
+            <td>1</td>
+            <td><div class="coveragePercentage">0% </div><div class="coverage_bar"><div class="coverage_complete" style="width:0%"></div><div class="coverage_ledgend">0/102</div></div></td>
+            <td><div class="coveragePercentage">0% </div><div class="coverage_bar"><div class="coverage_complete" style="width:0%"></div><div class="coverage_ledgend">0/29</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./Polkualgoritmien_vertailu.tietorakenteet/index.html">Polkualgoritmien_vertailu.tietorakenteet</a></td>
+            <td>1</td>
+            <td><div class="coveragePercentage">98% </div><div class="coverage_bar"><div class="coverage_complete" style="width:98%"></div><div class="coverage_ledgend">42/43</div></div></td>
+            <td><div class="coveragePercentage">86% </div><div class="coverage_bar"><div class="coverage_complete" style="width:86%"></div><div class="coverage_ledgend">30/35</div></div></td>
+        </tr>
+
+     </tbody>
+</table>
+<br/>
+
+
+
+<hr/>
+
+Report generated by <a href='http://pitest.org'>PIT</a> 1.1.8
+
+</body>
+</html>
