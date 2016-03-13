@@ -17,3 +17,11 @@ Koska algoritmit ovat yhtä tehokkaita O-notaation kannalta, ei sen suhteen teht
 *Suorituskykyvertailu:*
 
 Tämä osio on pääosiltaan siirretty omaan dokumenttiinsa luettavuuden vuoksi. Yhteenvetona voidaan todeta Astarin päihittävän Dijkstran testien perusteella millä tahansa syötekoolla.
+
+*Puutteet ja parannusehdotukset:*
+
+Loppujen lopuksi ohjelman olisi voinut toteuttaa vain yhdellä algoritmi-luokalla. Tämä siksi, että olennaista eroa on vain siinä, mikä solmu keosta vedetään, ja tämän hoidan Solmun ja ASolmu compareTo-metodien eroilla. Lisäksi tällaisenaan ohjelma toimii vain kaksiulotteisella taulukolla ja rajatuilla ascii-merkeillä. Siten vertailu on varsin teoreettispohjaista ja soveltuu ehkä korkeintaan joihinkin yksinkertaisiin peleihin sovellettavaksi suoraan. Joku graafinen käyttöliittymä olisi myös ollut kiva, mutta sille ei jäänyt aikaa.
+
+*Lähteet:*
+
+Lähteinä käytetty syksyn 2015 Helsingin yliopiston Tietorakenteet ja algoritmit -kurssin materiaalin kekoa, Dijkstraa ja Astaria käsitteleviä kappaleita (https://www.cs.helsinki.fi/u/floreen/tira2015syksy/sivut351-638.pdf), sekä Astaria käsittelevää wikipedia-sivua (https://en.wikipedia.org/wiki/A*_search_algorithm)
