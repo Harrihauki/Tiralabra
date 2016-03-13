@@ -13,3 +13,7 @@ etsiPolut-metodissa on toistolause, joka suoritetaan pahimmillaan V + D kertaa, 
 Algoritmit luovat kolme vakiokertoimella syötteeseen suhteutettavaa taulukkoa, joten algoritmien tilavaativuus on selvästi O(n).
 
 Koska algoritmit ovat yhtä tehokkaita O-notaation kannalta, ei sen suhteen tehty vaativuusvertailu ole mielekästä, eikä oikeastaan edes mahdollista.
+
+*Suorituskykyvertailu:*
+
+Tämä osio on pääosiltaan siirretty omaan dokumenttiinsa luettavuuden vuoksi. Yhteenvetona voidaan todeta Astarin päihittävän Dijkstran testien perusteella millä tahansa syötekoolla.
