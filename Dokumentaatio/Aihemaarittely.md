@@ -7,3 +7,5 @@ Tietorakenteena toteutettavana on keko, eli Heap. Ja vielä tarkemmin, toteuteta
 Koska Heapin metodit toimivat aina suhteessa muutoksen kokeneeseen alipuuhun, ja keon korkeus on O(logN), ovat teoreettiset aikavaativuudet Heapin kaikille metodeille O(logN).
 
 Teoreettiset aikavaativuudet A*:lle ja Dijkstralle ovat O((V + E)logV.
+
+Lähteinä käytetty syksyn 2015 Helsingin yliopiston Tietorakenteet ja algoritmit -kurssin materiaalin kekoa, Dijkstraa ja Astaria käsitteleviä kappaleita (https://www.cs.helsinki.fi/u/floreen/tira2015syksy/sivut351-638.pdf), sekä Astaria käsittelevää wikipedia-sivua (https://en.wikipedia.org/wiki/A*_search_algorithm)
